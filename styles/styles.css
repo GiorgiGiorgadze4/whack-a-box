@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+  flex-direction: column;
+  color: #ffcc00;
+  font-family: "Press Start 2P", cursive;
+}
+
+.title {
+  margin: 20px;
+}
+
+.subtext {
+  color: #ccc;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.board {
+  display: inline-grid;
+  padding: 10px;
+  grid-template-columns: repeat(3, 90px);
+  grid-template-rows: repeat(3, 90px);
+  gap: 6px;
+  background-color: #444;
+  border: 3px solid #ffcc00; 
+}
+
+.board > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ffcc00;
+  user-select: none;
+  color: transparent;
+  background-color: #666;
+  transition: 100ms;
+}
+
+.board > [data-status="hidden"] {
+  background-color: #ffcc00;
+  cursor: pointer;
+}
+
+.board > [data-status="number"] {
+  background-color: transparent;
+  color: #745e06;
+}
+
+.selected {
+  outline: 2px solid #55ff55;
+}
+
+.score {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #ffcc00;
+  margin: 10px;
+  border: 2px solid #ffcc00;
+  padding: 5px;
+  background-color: #33333387;
+  backdrop-filter: blur(5px);
+  z-index: 1;
+  transition: 500ms;
+}
+.score.gameFinished {
+  transform: scale(1.6);
+}
+.scoreValue{
+  margin: 0;
+}
+.highScoreValue {
+  font-size: 12px;
+}
+
+.board > .missed {
+  outline: 3px solid rgb(255, 63, 63);
+  animation: miss 200ms;
+  transition: 100ms;
+} 
+.timerContainer{
+  position: relative;
+}
+.timerContainer > span{
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  margin-left: 5px;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 100ms;
+  opacity: 0;
+}
+.timerContainer > .reduced{
+  background-color: rgb(179, 0, 0);
+  opacity: 1;
+}
+.timerContainer > .increased{
+  background-color: green;
+  opacity: 1;
+}
+.playButton{
+  padding: 10px 30px;
+  background-color: #ffcc00;
+  color: #333;
+  border-radius: 25px;
+  position: fixed;
+  bottom: 50px;
+  cursor: pointer;
+  transition: 200ms;
+}
+.playButton:hover{
+  background-color: #ffdc4e;
+}
+.playButton:active{
+  transform: scale(0.95);
+}
+.playButton.disabled{
+  background-color: grey;
+}
+
+@keyframes miss {
+  25%{
+    transform: rotate(-3deg);
+  }
+  75%{
+    transform: rotate(3deg);
+  }
+}
